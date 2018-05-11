@@ -3,12 +3,14 @@ import CommentList from './CommentList'
 
 class Article extends React.Component {
 	state = {
-		isOpen: true
+		isOpen: true,
+		isOpenComments: true
 	}
 
 	render() {
 		const {article} = this.props
         const {isOpen} = this.state
+        const {isOpenComments} = this.state
 		// const body = this.state.isOpen && <section>{article.text}</section>
 		return (
 			<div>
@@ -18,9 +20,12 @@ class Article extends React.Component {
 					</button>
 				</h2>
 				{this.getBody()}
-				<div>
-					<CommentList comments = {article.comments}/>
-				</div>
+
+				<button onClick={this.handleClick2}>
+					{isOpenComments ? 'open' : 'close'}
+				</button>
+
+                {this.getComment()}
 			</div>
 		)
 	}
@@ -31,11 +36,23 @@ class Article extends React.Component {
         return  <section>{article.text}</section>
     }
 
+    getComment() {
+        if (this.state.isOpenComments) return null
+        const {article} = this.props
+        return  <div><CommentList comments = {article.comments}/></div>
+    }
+
 	handleClick = () => {
 		this.setState({
 			isOpen: !this.state.isOpen
 		})
 	}
+
+    handleClick2 = () => {
+        this.setState({
+            isOpenComments: !this.state.isOpenComments
+        })
+    }
 }
 
 // function Article(props) {
