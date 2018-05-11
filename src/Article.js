@@ -1,5 +1,5 @@
 import React from 'react'
-import articles from './fixtures'
+import CommentList from './CommentList'
 
 class Article extends React.Component {
 	state = {
@@ -18,6 +18,9 @@ class Article extends React.Component {
 					</button>
 				</h2>
 				{this.getBody()}
+				<div>
+					<CommentList comments = {article.comments}/>
+				</div>
 			</div>
 		)
 	}

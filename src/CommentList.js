@@ -1,8 +1,7 @@
-// import React, {Component} from 'react'
 import React from 'react'
-import Article from './Article'
+import Comment from './Comment'
 
-// class ArticleList extends React.Component {
+// class CommentList extends React.Component {
 //     constructor(props) {
 //         super(props);
 //         this.state = {
@@ -12,7 +11,7 @@ import Article from './Article'
 //
 // 	render() {
 //
-//         const body = this.state.isOpen && <h2>{propsValues.items}</h2>
+//         // const body = this.state.isOpen && <h2>{propsValues.items}</h2>
 //
 //         return (
 // 	    	<div>
@@ -38,10 +37,10 @@ import Article from './Article'
 //     }
 // }
 
-function ArticleList({articles}) {
-	const articleElements = articles.map((article) =>
-        <li key = {article.id}><Article article = {article}/></li>)
-    return  <ul>{articleElements}</ul>
+function CommentList({comments}) {
+    const articleComments = comments.map((comment) =>
+        <li key = {comment.id}><Comment comment = {comment}/></li>)
+    return  <ul>{articleComments}</ul>
 }
 
-export default ArticleList
+export default CommentList
