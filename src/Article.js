@@ -1,17 +1,23 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CommentList from './CommentList'
 
 class Article extends React.Component {
+	static propTypes = {
+		 article: PropTypes.shape({
+			 id: PropTypes.string.isRequired,
+			 title: PropTypes.string.isRequired,
+			 text: PropTypes.string.isRequired
+		 }).isRequired
+	}
+
 	state = {
-		isOpen: true,
-		isOpenComments: true
+		isOpen: true
 	}
 
 	render() {
 		const {article} = this.props
         const {isOpen} = this.state
-        const {isOpenComments} = this.state
-		// const body = this.state.isOpen && <section>{article.text}</section>
 		return (
 			<div>
 				<h2>{article.title}
@@ -20,12 +26,6 @@ class Article extends React.Component {
 					</button>
 				</h2>
 				{this.getBody()}
-
-				<button onClick={this.handleClick2}>
-					{isOpenComments ? 'open' : 'close'}
-				</button>
-
-                {this.getComment()}
 			</div>
 		)
 	}
@@ -33,26 +33,21 @@ class Article extends React.Component {
     getBody() {
         if (!this.state.isOpen) return null
         const {article} = this.props
-        return  <section>{article.text}</section>
+        return (
+        	<section>
+				{article.text}
+				<CommentList comments = {article.comments}/>
+        	</section>
+    	)
     }
 
-    getComment() {
-        if (this.state.isOpenComments) return null
-        const {article} = this.props
-        return  <div><CommentList comments = {article.comments}/></div>
-    }
+
 
 	handleClick = () => {
 		this.setState({
 			isOpen: !this.state.isOpen
 		})
 	}
-
-    handleClick2 = () => {
-        this.setState({
-            isOpenComments: !this.state.isOpenComments
-        })
-    }
 }
 
 // function Article(props) {
