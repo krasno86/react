@@ -12,10 +12,18 @@ class Article extends React.Component {
 		 }).isRequired
 	}
 
+	componentWillMount() {
+		console.log('componentWillMount')
+	}
+
+    componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps', this.props, nextProps.isOpen, this.props.article)
+    }
+
 	render() {
 		const {article, isOpen, toggleOpen} = this.props
 		return (
-			<div>
+			<div ref = 'container'>
 				<h2>{article.title}</h2>
                 <button onClick = {toggleOpen}>
                     {isOpen ? 'close' : 'open'}
@@ -24,6 +32,11 @@ class Article extends React.Component {
 			</div>
 		)
 	}
+
+    componentDidMount() {
+        console.log('componentDidMount')
+		console.log(this.refs.container)
+    }
 
     getBody() {
         const {article, isOpen} = this.props
@@ -37,12 +50,4 @@ class Article extends React.Component {
     }
 }
 
-// function Article(props) {
-// 	const {article} = props
-//     return  <div>
-// 				<h3>Имя: {article.name}</h3>
-// 				<section>Возраст: {article.text}</section>
-//     		</div>
-// }
-	
 export default toggleOpen(Article)

@@ -4,6 +4,7 @@ export default (OriginalComponent) => class WrapedComponent extends ReactCompone
     state = {
         isOpen: false
     }
+
     render() {
         return <OriginalComponent {...this.props} isOpen = {this.state.isOpen} toggleOpen = {this.toggleOpen}/>
     }
