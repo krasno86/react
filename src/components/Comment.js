@@ -8,6 +8,7 @@ function Comment({comment}) {
 
 Comment.propTypes = {
     comment: PropTypes.shape({
+        id: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
         user: PropTypes.string.isRequired
     }).isRequired
