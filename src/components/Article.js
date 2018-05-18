@@ -8,22 +8,24 @@ class Article extends React.Component {
 			 id: PropTypes.string.isRequired,
 			 title: PropTypes.string.isRequired,
 			 text: PropTypes.string.isRequired
-		 }).isRequired
+		 }).isRequired,
+		isOpen: PropTypes.bool,
+		toggleOpen: PropTypes.func
 	}
 
 	componentWillMount() {
-		console.log('componentWillMount')
+		// console.log('componentWillMount')
 	}
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps', this.props, nextProps.isOpen, this.props.article)
+        // console.log('componentWillReceiveProps', this.props, nextProps.isOpen, this.props.article)
     }
 
 	render() {
 		const {article, isOpen, toggleOpen} = this.props
 		return (
 			<div ref = 'container'>
-				<h2>{article.title}</h2>
+				<h2 >{article.title}</h2>
                 <button onClick = {toggleOpen}>
                     {isOpen ? 'close' : 'open'}
                 </button>
@@ -33,12 +35,15 @@ class Article extends React.Component {
 	}
 
     componentDidMount() {
-        console.log('componentDidMount')
+        // console.log('componentDidMount')
     }
 
     getBody() {
         const {article, isOpen} = this.props
-        if (!isOpen) return null
+        if (!isOpen) {
+            console.log('close')
+            return null
+        }
         return (
         	<section>
 				{article.text}
@@ -48,4 +53,4 @@ class Article extends React.Component {
     }
 }
 
-export default  Article
+export default Article
