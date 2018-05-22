@@ -1,8 +1,9 @@
-import React from 'react'
+// import React, {Component} f rom 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import CommentList from './CommentList'
 
-class Article extends React.Component {
+class Article extends PureComponent {
 	static propTypes = {
 		 article: PropTypes.shape({
 			 id: PropTypes.string.isRequired,
@@ -13,16 +14,13 @@ class Article extends React.Component {
 		toggleOpen: PropTypes.func
 	}
 
-	componentWillMount() {
-		// console.log('componentWillMount')
-	}
-
-    componentWillReceiveProps(nextProps) {
-        // console.log('componentWillReceiveProps', this.props, nextProps.isOpen, this.props.article)
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+	 //    return nextProps.isOpen !== this.props.isOpen
+    // }
 
 	render() {
 		const {article, isOpen, toggleOpen} = this.props
+        console.log('update article')
 		return (
 			<div ref = 'container'>
 				<h2 >{article.title}</h2>
