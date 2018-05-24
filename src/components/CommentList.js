@@ -7,10 +7,23 @@ class CommentList extends React.Component {
         comments:  []
     }
 
+    state = {
+        username: '',
+        commentText: ''
+    }
+
 	render() {
         const text = this.props.isOpen ? 'hide comments' : 'show comments'
         return (
 	    	<div>
+                <div className='newComment'>
+                    Name: <input type = 'text' className='userName'
+                                 value = {this.props.username}
+                                 onChange = {this.handleUserName} /><br/><br/>
+                    Comment: <input type = 'text' className='comment'
+                                    value = {this.props.commentText}
+                                    onChange = {this.handleAddComment} />
+                </div>
                 <button onClick={this.props.toggleOpen}>{text}</button>
                 {this.getBody()}
     		</div>
@@ -28,12 +41,23 @@ class CommentList extends React.Component {
             </ul>
         )
     }
-}
 
-// function CommentList({comments}) {
-//     const articleComments = comments.map((comment) =>
-//         <li key = {comment.id}><Comment comment = {comment}/></li>)
-//     return  <ul>{articleComments}</ul>
-// }
+    handleUserName = (ev) => {
+        if (ev.target.value.length < 5 || ev.target.value.length > 15) return
+
+        this.setState({
+            username: ev.target.value
+        })
+        console.log(this.state.username)
+    }
+
+    handleAddComment = (ev) => {
+        if (ev.target.value.length < 20 || ev.target.value.length > 50) return
+
+        this.setState({
+            username: ev.target.value
+        })
+    }
+}
 
 export default toggleOpen(CommentList)
