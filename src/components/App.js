@@ -2,6 +2,7 @@ import React from 'react'
 import ArticleList from "./ArticleList";
 import UserForm from "./UserForm";
 import Select from 'react-select';
+import './article.css'
 // import 'react-select/dist/react-select.css';
 
 class App extends React.Component {
