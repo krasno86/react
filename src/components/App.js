@@ -4,7 +4,7 @@ import UserForm from "./UserForm";
 import Select from 'react-select';
 import './article.css'
 import ReactDatePicker from './ReactDatePicker'
-// import CommentForm from './CommentForm'
+import CommentForm from './CommentForm'
 
 class App extends React.Component {
 
@@ -20,6 +20,7 @@ class App extends React.Component {
         return (
             <div ref = 'container'>
                 <ReactDatePicker/>
+                <CommentForm />
                 <UserForm /><br/>
                 <Select options = {options} value = {this.state.selection} onChange = {this.changeSelection} isMulti />
                 <ArticleList articles = {this.props.articles} />

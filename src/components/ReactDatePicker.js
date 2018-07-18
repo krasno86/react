@@ -1,44 +1,29 @@
 import React from 'react'
-import DayPicker from 'react-day-picker';
+import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 
 class ReactDatePicker extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleDayClick = this.handleDayClick.bind(this);
-        this.state = {
-            selectedDay: undefined,
-            startDate: undefined,
-            endDate: undefined
-        };
+    state = {
+            from: null,
+            to: null
     }
 
-    handleDayClick(day, { selected, disabled }) {
-        if (disabled) {
-            // Day is disabled, do nothing
-            return;
-        }
-        if (selected) {
-            // Unselect the day if already selected
-            this.setState({ selectedDay: undefined });
-            return;
-        }
-        this.setState({ selectedDay: day });
+    handleDayClick = (day) => {
+        this.setState(DateUtils.addDayToRange(day, this.state));
     }
+
     render() {
+        const { from, to } = this.state;
+        const selectedRange = from && to && `${from.toDateString()} - ${to.toDateString()}`
         return (
-            <div>
+            <div className='date-range'>
                 <DayPicker
+                    ref = 'daypicker'
+                    selectedDays={ day => DateUtils.isDayInRange(day, {from, to}) }
                     onDayClick={this.handleDayClick}
-                    selectedDays={this.state.selectedDay}
-                    disabledDays={{ daysOfWeek: [0] }}
                 />
-                {this.state.selectedDay ? (
-                    <p>You clicked {this.state.selectedDay.toLocaleDateString()}</p>
-                ) : (
-                    <p>Please select a day.</p>
-                )}
+                {selectedRange}
             </div>
         );
     }
