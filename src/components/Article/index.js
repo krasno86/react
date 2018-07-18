@@ -1,9 +1,10 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import CommentList from './CommentList'
+// import CommentList from '../CommentList'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+// import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-class Article extends PureComponent {
+class Index extends PureComponent {
 	static propTypes = {
 		 article: PropTypes.shape({
 			 id: PropTypes.string.isRequired,
@@ -14,13 +15,8 @@ class Article extends PureComponent {
 		toggleOpen: PropTypes.func
 	}
 
-    // shouldComponentUpdate(nextProps, nextState) {
-	 //    return nextProps.isOpen !== this.props.isOpen
-    // }
-
 	render() {
 		const {article, isOpen, toggleOpen} = this.props
-        // console.log('update article')
 		return (
 			<div ref = 'container'>
 				<h2 >{article.title}</h2>
@@ -51,10 +47,10 @@ class Article extends PureComponent {
         return (
         	<section>
 				{article.text}
-				<CommentList comments = {article.comments}/>
+				{/*<CommentList comments = {article.comments}/>*/}
         	</section>
     	)
     }
 }
 
-export default Article
+export default Index

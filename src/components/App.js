@@ -2,7 +2,7 @@ import React from 'react'
 import ArticleList from "./ArticleList";
 import UserForm from "./UserForm";
 import Select from 'react-select';
-import './article.css'
+import './Article/style.css'
 import ReactDatePicker from './ReactDatePicker'
 import CommentForm from './CommentForm'
 
