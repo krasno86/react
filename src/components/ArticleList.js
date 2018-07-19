@@ -1,10 +1,12 @@
 import React from 'react'
 import Index from './Article/index'
-import accordion from "../decorators/accordion";
-import PropTypes from "prop-types";
+import accordion from "../decorators/accordion"
+import PropTypes from "prop-types"
+import {connect} from 'react-redux'
 
 class ArticleList extends React.Component {
     static propTypes = {
+        //from connect
         articles: PropTypes.array.isRequired,
         //from accordion
         openItemId: PropTypes.string,
@@ -25,4 +27,6 @@ class ArticleList extends React.Component {
     }
 }
 
-export default accordion(ArticleList)
+export default connect(state => ({
+    articles: state.articles
+}))(accordion(ArticleList))

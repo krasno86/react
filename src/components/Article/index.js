@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-// import CommentList from '../CommentList'
+import CommentList from '../CommentList'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
@@ -23,6 +23,7 @@ class Index extends PureComponent {
                 <button onClick = {toggleOpen}>
                     {isOpen ? 'close' : 'open'}
                 </button>
+                <button onClick = {this.handleDelete}>Delete article</button>
                 <ReactCSSTransitionGroup
                     transitionName="article"
                     transitionEnterTimeout={300}
@@ -34,7 +35,7 @@ class Index extends PureComponent {
 		)
 	}
 
-    componentDidMount() {
+    handleDelete() {
         // console.log('componentDidMount')
     }
 
@@ -47,7 +48,7 @@ class Index extends PureComponent {
         return (
         	<section>
 				{article.text}
-				{/*<CommentList comments = {article.comments}/>*/}
+				<CommentList comments = {article.comments}/>
         	</section>
     	)
     }
