@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import CommentList from '../CommentList'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import {connect} from 'react-redux'
+import {deleteArticle} from '../../AC'
 
 class Index extends PureComponent {
 	static propTypes = {
@@ -35,14 +37,14 @@ class Index extends PureComponent {
 		)
 	}
 
-    handleDelete() {
-        // console.log('componentDidMount')
+    handleDelete = () => {
+        const {deleteArticle, article} = this.props
+		deleteArticle(article.id)
     }
 
     getBody() {
         const {article, isOpen} = this.props
         if (!isOpen) {
-            console.log('close')
             return null
         }
         return (
@@ -54,4 +56,4 @@ class Index extends PureComponent {
     }
 }
 
-export default Index
+export default connect(null, { deleteArticle })(Index)
