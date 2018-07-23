@@ -25,5 +25,4 @@ const mapStateToProps = () => {
     }
 }
 
-
 export default connect(mapStateToProps)(Comment)
