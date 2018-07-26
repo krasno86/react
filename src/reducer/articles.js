@@ -1,4 +1,3 @@
-// import articles from '../fixtures'
 import {normalizedArticles as defaultArticles} from '../fixtures'
 import {DELETE_ARTICLE} from '../constants'
 

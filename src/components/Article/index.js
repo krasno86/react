@@ -8,7 +8,9 @@ import {deleteArticle} from '../../AC'
 
 class Index extends PureComponent {
 	static propTypes = {
-		 article: PropTypes.shape({
+	 	id: PropTypes.string.isRequired,
+	 	//from connect
+		article: PropTypes.shape({
 			 id: PropTypes.string.isRequired,
 			 title: PropTypes.string.isRequired,
 			 text: PropTypes.string.isRequired
@@ -19,6 +21,7 @@ class Index extends PureComponent {
 
 	render() {
 		const {article, isOpen, toggleOpen} = this.props
+        if (!article) return null
 		return (
 			<div ref = 'container'>
 				<h2 >{article.title}</h2>
@@ -56,4 +59,6 @@ class Index extends PureComponent {
     }
 }
 
-export default connect(null, { deleteArticle })(Index)
+export default connect((state, ownProps) => ({
+    article: state.articles.find(article => article.id === ownProps.id)
+}), { deleteArticle })(Index)

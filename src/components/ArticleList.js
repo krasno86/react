@@ -1,8 +1,8 @@
 import React from 'react'
 import Index from './Article/index'
-import accordion from "../decorators/accordion"
 import PropTypes from "prop-types"
 import {connect} from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 class ArticleList extends React.Component {
     static propTypes = {
@@ -10,17 +10,16 @@ class ArticleList extends React.Component {
         articles: PropTypes.array.isRequired,
         //from accordion
         openItemId: PropTypes.string,
-        toggleOpenItem: PropTypes.func.isRequired
+        // toggleOpenItem: PropTypes.func.isRequired
     }
 
 	render() {
-        const { articles, openItemId, toggleOpenItem } = this.props
-        const articleElements = articles.map(article => <li key = {article.id}>
-            <Index
-                article = {article}
-                isOpen = {article.id === openItemId}
-                toggleOpen = {toggleOpenItem(article.id)}
-            />
+        const { articles } = this.props
+        const articleElements = articles.map(article =>
+        <li key = {article.id}>
+            <NavLink to = { `/articles/${article.id}` } activeStyle = {{color: 'red'}} >
+                {article.title}
+            </NavLink>
         </li>
         )
         return  <ul>{articleElements}</ul>
@@ -29,4 +28,4 @@ class ArticleList extends React.Component {
 
 export default connect(state => ({
     articles: state.articles
-}))(accordion(ArticleList))
+}))(ArticleList)
