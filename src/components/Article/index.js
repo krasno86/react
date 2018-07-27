@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import CommentList from '../CommentList'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-// import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {connect} from 'react-redux'
 import {deleteArticle} from '../../AC'
 
@@ -17,6 +16,11 @@ class Index extends PureComponent {
 		 }).isRequired,
 		isOpen: PropTypes.bool,
 		toggleOpen: PropTypes.func
+	}
+
+	componentDidMount(){
+        const {article} = this.props
+        if (!article || !article.text) return null
 	}
 
 	render() {
