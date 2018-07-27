@@ -5,12 +5,13 @@ import UserForm from "./UserForm"
 import './Article/style.css'
 import ReactDatePicker from './ReactDatePicker'
 import CommentForm from './CommentForm'
-import { HashRouter, Route, NavLink } from 'react-router-dom'
+import NotFound from './routes/NotFound'
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom'
 
 class App extends React.Component {
     render() {
         return (
-            <HashRouter>
+            <BrowserRouter>
                 <div>
                     <div>
                         <h2>Main menu</h2>
@@ -19,15 +20,16 @@ class App extends React.Component {
                         <div><NavLink activeStyle = {{color: 'red'}} to='/articles'>article list</NavLink></div>
                         <div><NavLink activeStyle = {{color: 'red'}} to='/userform'>user form</NavLink></div>
                     </div>
-                    <div className="root">
+                    <Switch>
                         <Route path = '/datepicker' component = {ReactDatePicker}/>
                         <Route path = '/commentform' component = {CommentForm}/>
                         <Route path = '/articles' component = {Articles}/>
                         <Route path = '/userform' component = {UserForm}/>
+                        <Route path = '*' component = {NotFound}/>
                         {/*<Route path = '/#' component = {App}/>*/}
-                    </div>
+                    </Switch>
                 </div>
-            </HashRouter>
+            </BrowserRouter>
             // <Router>
             //     <div>
             //         <ReactDatePicker/>
